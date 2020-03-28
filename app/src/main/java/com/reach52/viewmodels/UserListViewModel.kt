@@ -12,9 +12,9 @@ class UserListViewModel : ViewModel() {
         it.value = ArrayList()
     }
 
-    fun loadUsers() {
+    fun loadUsers(sortedByDOB: Boolean = false) {
 
-        UserRepo.getUsers {
+        UserRepo.getUsers(sortedByDOB) {
             users.value = it
         }
 

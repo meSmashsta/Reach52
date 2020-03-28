@@ -8,11 +8,15 @@ object UserRepo {
 
     private val db = AppDatabase.getDatabase()
 
-    fun getUsers(fetchCallback: (List<User>?) -> Unit = {}) {
+    fun getUsers(sortedByDoB: Boolean = false, fetchCallback: (List<User>?) -> Unit = {}) {
 
         object : AsyncTask<Void, Void, List<User>>() {
             override fun doInBackground(vararg params: Void?): List<User> {
-                return db.userDao().getUsers()
+                if (sortedByDoB) {
+                    return db.userDao().getUsersSortedByDOB()
+                } else {
+                    return db.userDao().getUsersSortedByName()
+                }
             }
 
             override fun onPostExecute(result: List<User>?) {
