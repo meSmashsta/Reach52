@@ -61,7 +61,7 @@ class UserListAdapter(val context: Context) :
             b.user = user
             b.userDob.text = stringFromLongDate(user.dob)
             b.userAge.text = "${calculateAge(user.dob)} Years"
-            Glide.with(context).load(user.image).into(b.userImage)
+            Glide.with(context).load(user.imageUri).into(b.userImage)
 
         }
 

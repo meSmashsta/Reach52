@@ -6,7 +6,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "Users")
 class User(name: String, dob: Long) {
 
     @PrimaryKey(autoGenerate = true)
@@ -24,8 +24,13 @@ class User(name: String, dob: Long) {
     @Nullable
     var address: String? = null
 
-    @ColumnInfo(name = "image", typeAffinity = ColumnInfo.BLOB)
+    @ColumnInfo(name = "imageUri")
     @Nullable
-    var image: ByteArray? = null
+    var imageUri: String? = null
+
+    override fun toString(): String {
+        return "User(id=$id, name='$name', dob=$dob, address=$address, imageUri=$imageUri)"
+    }
+
 
 }

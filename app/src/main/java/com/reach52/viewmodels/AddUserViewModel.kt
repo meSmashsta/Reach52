@@ -3,9 +3,11 @@ package com.reach52.viewmodels
 import androidx.lifecycle.ViewModel
 import com.reach52.entities.User
 import com.reach52.repos.UserRepo
+import com.reach52.utils.logi
 
 class AddUserViewModel : ViewModel() {
 
+    var capturedImageUri: String? = null
     var enteredDoB: Long = -1
     var enteredName: String = ""
     var enteredAddress: String? = null
@@ -27,6 +29,12 @@ class AddUserViewModel : ViewModel() {
         if (enteredAddress != null) {
             user.address = enteredAddress
         }
+
+        if (capturedImageUri != null) {
+            user.imageUri = capturedImageUri
+        }
+
+        logi("adding new user:\n$user")
 
         UserRepo.insertUser(user) {
             callback(null)

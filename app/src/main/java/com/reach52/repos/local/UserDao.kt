@@ -8,10 +8,10 @@ import com.reach52.entities.User
 @Dao
 interface UserDao {
 
-    @Query("SELECT * FROM user ORDER BY name")
+    @Query("SELECT * FROM users ORDER BY name")
     fun getUsersSortedByName(): List<User>
 
-    @Query("SELECT * FROM user ORDER BY dob")
+    @Query("SELECT * FROM users ORDER BY dob")
     fun getUsersSortedByDOB(): List<User>
 
     @Insert
