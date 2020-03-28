@@ -59,8 +59,8 @@ class UserListAdapter(val context: Context) :
         fun setUser(user: User) {
 
             b.user = user
-            b.userDob.text = stringFromLongDate(user.dob)
-            b.userAge.text = "${calculateAge(user.dob)} Years"
+            b.userDob.text = "DoB: ${stringFromLongDate(user.dob)}"
+            b.userAge.text = "Age: ${calculateAge(user.dob)} Years"
             Glide.with(context).load(user.imageUri).into(b.userImage)
 
         }
