@@ -22,6 +22,8 @@ class ViewActivity : AppCompatActivity() {
     private lateinit var adapter: UserListAdapter
     private lateinit var viewModel: UserListViewModel
 
+    private lateinit var popupMenu: PopupMenu
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         b = DataBindingUtil.setContentView(this, R.layout.activity_view)
@@ -29,6 +31,26 @@ class ViewActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[UserListViewModel::class.java]
         adapter = UserListAdapter(this)
+
+        val view = findViewById<View>(R.id.sort_options)
+        popupMenu = PopupMenu(this, view)
+        popupMenu.menuInflater.inflate(R.menu.view_menu_popup, popupMenu.menu)
+        popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
+            override fun onMenuItemClick(item: MenuItem?): Boolean {
+
+                when (item?.itemId) {
+                    R.id.sort_by_age -> {
+                        viewModel.loadUsers(true)
+                    }
+                    R.id.sort_by_name -> {
+                        viewModel.loadUsers(false)
+                    }
+                }
+
+                return true
+            }
+
+        })
 
         b.usersList.adapter = adapter
         viewModel.users.observe(
@@ -66,27 +88,6 @@ class ViewActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         if (item?.itemId == R.id.sort_options) {
-
-            val view = findViewById<View>(R.id.sort_options)
-
-            val popupMenu = PopupMenu(this, view)
-            popupMenu.menuInflater.inflate(R.menu.view_menu_popup, popupMenu.menu)
-            popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
-                override fun onMenuItemClick(item: MenuItem?): Boolean {
-
-                    when (item?.itemId) {
-                        R.id.sort_by_age -> {
-                            viewModel.loadUsers(true)
-                        }
-                        R.id.sort_by_name -> {
-                            viewModel.loadUsers(false)
-                        }
-                    }
-
-                    return true
-                }
-
-            })
             popupMenu.show()
 
         }
