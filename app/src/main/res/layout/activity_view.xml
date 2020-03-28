@@ -36,13 +36,25 @@
 			tools:listitem="@layout/x_user_item" />
 
 		<com.google.android.material.floatingactionbutton.FloatingActionButton
-			android:id="@+id/floatingActionButton"
+			android:id="@+id/addUserFab"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_margin="32dp"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
+			android:onClick="onAddUserClick"
 			app:srcCompat="@drawable/ic_add" />
+
+		<TextView
+			android:id="@+id/no_user_text"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="No User Found."
+			android:visibility="gone"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
