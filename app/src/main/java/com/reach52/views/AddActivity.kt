@@ -20,7 +20,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.reach52.R
 import com.reach52.databinding.ActivityAddBinding
-import com.reach52.utils.convertBitmapToByteArray
 import com.reach52.viewmodels.AddUserViewModel
 import java.io.File
 import java.util.*
