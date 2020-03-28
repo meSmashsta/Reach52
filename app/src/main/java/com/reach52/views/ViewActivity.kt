@@ -27,13 +27,15 @@ class ViewActivity : AppCompatActivity() {
         adapter = UserListAdapter(this)
 
         b.usersList.adapter = adapter
+        viewModel.loadUsers()
 
     }
 
     override fun onStart() {
         super.onStart()
 
-        viewModel.getUsers().observe(this,
+        viewModel.users.observe(
+            this,
             Observer<List<User>> {
                 if (it.isEmpty()) {
                     b.noUserText.visibility = View.VISIBLE

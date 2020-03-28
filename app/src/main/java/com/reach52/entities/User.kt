@@ -1,25 +1,31 @@
 package com.reach52.entities
 
+import androidx.annotation.NonNull
+import androidx.annotation.Nullable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class User(
+class User(name: String, dob: Long) {
 
-    @PrimaryKey
-    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
 
     @ColumnInfo(name = "name")
-    val name: String,
+    @NonNull
+    val name = name
 
     @ColumnInfo(name = "dob")
-    val dob: Long,
+    @NonNull
+    val dob: Long = dob
 
     @ColumnInfo(name = "address")
-    val address: String,
+    @Nullable
+    var address: String? = null
 
     @ColumnInfo(name = "image", typeAffinity = ColumnInfo.BLOB)
-    val image: ByteArray
+    @Nullable
+    var image: ByteArray? = null
 
-)
+}
