@@ -6,9 +6,31 @@ import com.reach52.repos.UserRepo
 
 class AddUserViewModel : ViewModel() {
 
-    fun addNewUser(user: User, callback: () -> Unit) {
+    var enteredDoB: Long = -1
+    var enteredName: String = ""
+    var enteredAddress: String? = null
 
-        UserRepo.insertUser(user, callback)
+    fun addNewUser(callback: (String?) -> Unit) {
+
+        val user = User(enteredName, enteredDoB)
+
+        if (enteredName.isEmpty()) {
+            callback("Name cannot be empty")
+            return
+        }
+
+        if (enteredDoB <= 0L) {
+            callback("Date of Birth not set")
+            return
+        }
+
+        if (enteredAddress != null) {
+            user.address = enteredAddress
+        }
+
+        UserRepo.insertUser(user) {
+            callback(null)
+        }
 
     }
 

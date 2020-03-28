@@ -9,6 +9,8 @@ import com.bumptech.glide.Glide
 import com.reach52.R
 import com.reach52.databinding.XUserItemBinding
 import com.reach52.entities.User
+import com.reach52.utils.calculateAge
+import com.reach52.utils.stringFromLongDate
 
 class UserListAdapter(val context: Context) :
     RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
@@ -57,6 +59,8 @@ class UserListAdapter(val context: Context) :
         fun setUser(user: User) {
 
             b.user = user
+            b.userDob.text = stringFromLongDate(user.dob)
+            b.userAge.text = "${calculateAge(user.dob)} Years"
             Glide.with(context).load(user.image).into(b.userImage)
 
         }

@@ -27,13 +27,6 @@ class ViewActivity : AppCompatActivity() {
         adapter = UserListAdapter(this)
 
         b.usersList.adapter = adapter
-        viewModel.loadUsers()
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-
         viewModel.users.observe(
             this,
             Observer<List<User>> {
@@ -48,9 +41,15 @@ class ViewActivity : AppCompatActivity() {
 
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onStart() {
+        super.onStart()
 
+        viewModel.loadUsers()
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
         viewModel.clearObservers(this)
 
     }
